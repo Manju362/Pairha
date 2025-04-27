@@ -84,7 +84,7 @@
     async function generateCode() {
       const numberInput = document.getElementById("number").value;
       const resultDiv = document.getElementById("result");
-      const loadingSpinner = document.getElement. getElementById("loading-spinner");
+      const loadingSpinner = document.getElementById("loading-spinner");
 
       if (!numberInput) {
         resultDiv.innerHTML = '<span style="color: red;">Please enter a phone number.</span>';
@@ -96,7 +96,9 @@
       resultDiv.innerHTML = "";
 
       try {
+        console.log("Sending request to /generate-code with number:", numberInput);
         const response = await axios.get(`/generate-code?number=${numberInput}`);
+        console.log("Response from server:", response.data);
         const data = response.data;
 
         if (data.code) {
@@ -105,6 +107,7 @@
           resultDiv.innerHTML = `<span style="color: red;">Error: ${data.error}</span>`;
         }
       } catch (err) {
+        console.error("Error in generateCode:", err.message);
         resultDiv.innerHTML = '<span style="color: red;">Error: Failed to generate pairing code.</span>';
       }
 
@@ -113,4 +116,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
