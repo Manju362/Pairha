@@ -8,13 +8,14 @@ require("events").EventEmitter.defaultMaxListeners = 500;
 app.use("/code", code);
 
 app.use("/", async (req, res, next) => {
+  console.log("Serving pair.html");
   res.sendFile(__path + "/pair.html");
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(PORT, () => {
-  console.log(`⏩ Server running on http://localhost:` + PORT);
+  console.log(`⏩ Server running on http://localhost:${PORT}`);
 });
 
 module.exports = app;
